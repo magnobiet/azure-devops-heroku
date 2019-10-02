@@ -1,0 +1,32 @@
+{
+    "name": "azure-devops-heroku",
+    "scripts": {
+        "postdeploy": "php artisan key:generate && php artisan migrate --seed"
+    },
+    "env": {
+        "HEROKU_APP_NAME": {
+            "required": true
+        },
+        "HEROKU_PARENT_APP_NAME": {
+            "required": true
+        },
+        "APP_DEBUG": "true",
+        "APP_ENV": "local",
+        "APP_LOG": "daily",
+        "APP_LOG_LEVEL": "debug",
+        "CACHE_ENABLED": "false"
+    },
+    "formation": {},
+    "addons": [
+        "heroku-postgresql",
+        "papertrail"
+    ],
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "heroku/php"
+        }
+    ]
+}
